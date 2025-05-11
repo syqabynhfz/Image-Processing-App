@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengolahan Citra</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+      <div class="header-nav">
+          <a href="./html/landingpage.html" class="back-button">
+              <i class="fas fa-arrow-left"></i> Kembali
+          </a>
+          <h1><i class="fas fa-image"></i> IMAGE PROCESSING APP</h1>
+      </div>
+    </header>
+    
+    <main>
+      <div class="button-group">
+        <h3><i class="fas fa-upload"></i> Unggah Gambar</h3>
+        <input type="file" id="imageInput" accept="image/*" style="display: none;">
+        <canvas id="imageCanvas"></canvas>
+        <button onclick="document.getElementById('imageInput').click()">
+            <i class="fas fa-folder-open"></i> Pilih Gambar
+        </button>
+      </div>
+
+        <div class="button-container">
+            <div class="button-group">
+              <h3>Konversi Warna</h3>
+              <button onclick="applyGrayscale()">Grayscale</button>
+              <button onclick="applyBinary()">Binary</button>
+          </div>
+
+          <div class="button-group">
+              <h3>Penyesuaian</h3>
+              <button onclick="adjustBrightness(20)">Tambah Kecerahan</button>
+              <button onclick="adjustBrightness(-20)">Kurangi Kecerahan</button>
+              <button onclick="equalizeHistogram()">Equalisasi Histogram</button>
+          </div>
+
+          <div class="button-group">
+              <h3>Filter</h3>
+              <button onclick="applyAverageFilter()">Filter Rerata</button>
+              <button onclick="applyMedianFilter()">Filter Median</button>
+              <button onclick="applyEdgeDetection()">Deteksi Tepi</button>
+          </div>
+
+          <div class="button-group">
+              <h3>Transformasi</h3>
+              <button onclick="applyScaling(1.2)">Perbesar</button>
+              <button onclick="applyScaling(0.8)">Perkecil</button>
+              <button onclick="rotateImage(90)">Rotasi Kanan</button>
+              <button onclick="rotateImage(-90)">Rotasi Kiri</button>
+          </div>
+
+          <div class="button-group">
+              <h3>Lainnya</h3>
+              <button onclick="resetToOriginal()">Reset</button>
+              <button onclick="downloadImage()">Download Gambar</button>
+          </div>
+
+              <!-- Mode Perbandingan -->
+          <div class="button-group">
+              <h3><i class="fas fa-exchange-alt"></i> Perbandingan</h3>
+              <button onclick="toggleComparison()">
+                <i class="fas fa-layer-group"></i> Sebelum/Sesudah
+              </button>
+          </div>
+
+          <div class="comparison-container">
+            <div class="image-comparison">
+              <div class="image-container">
+                <h3>Gambar Asli</h3>
+                <canvas id="originalCanvas"></canvas>
+              </div>
+              <div class="image-container">
+                  <h3>Hasil Proses</h3>
+                  <canvas id="processedCanvas"></canvas>
+              </div>
+            </div>
+            <div class="comparison-slider">
+              <input type="range" min="0" max="100" value="50" id="comparisonSlider">
+            </div>
+          </div>
+
+                <!-- Indikator Proses -->
+          <div id="processingIndicator">
+              <div class="loader"></div>
+              <p>Memproses gambar...</p>
+          </div>
+
+                <!-- Dark Mode Toggle -->
+          <button id="darkModeToggle" onclick="toggleDarkMode()">
+               <i class="fas fa-moon"></i>
+          </button>
+          
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
